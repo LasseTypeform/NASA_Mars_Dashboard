@@ -1,23 +1,30 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { useSelector, useDispatch } from 'react-redux';
+import {setStateRoverName} from './actions';
 
 function App() {
+
+  const imageDate = useSelector(state => state.imageDate)
+  const roverChosen = useSelector(state => state.roverChosen)
+  const dispatch = useDispatch();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>NASA Mars Rover Dashboard</h1>
+
+      <div className='currentState'></div>
+      <h2>Current State</h2>
+      <p>RoverChosen: {roverChosen}</p>
+      <p>ImageDate: {imageDate}</p>
+      {/* <p>data: {data}</p> */}
+      
+
+      <button onClick={() => dispatch(setStateRoverName("Curiosity"))}>Click me</button>
+      <button onClick={() => dispatch(setStateRoverName("Opportunity"))}>Click me</button>
+      <button onClick={() => dispatch(setStateRoverName("Spirit"))}>Click me</button>
+
+
     </div>
   );
 }
